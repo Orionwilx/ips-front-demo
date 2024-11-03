@@ -41,7 +41,7 @@ export  class LoginComponent {
             if (response && response.status === 200) {
               console.log('Login successful, redireccionando...');
               //localStorage.setItem('token', response.token);
-              this.router.navigate(['/home']);
+              this.router.navigate(['/user-profile']);
               console.log('Login successful');
             }
           },
