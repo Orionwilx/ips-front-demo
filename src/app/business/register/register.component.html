@@ -1,0 +1,74 @@
+<app-header/>
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-semibold mb-6 text-center text-green-600">Registro de Usuario</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-700 mb-2">Nombre:</label>
+                <input id="nombre" formControlName="name" type="text" placeholder="Tu nombre"
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched">
+                    <small class="text-red-500">El nombre es requerido.</small>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 mb-2">Correo Electrónico:</label>
+                <input id="email" formControlName="email" type="email" placeholder="correo@ejemplo.com"
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    <small class="text-red-500">Ingresa un correo válido.</small>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="contraseña" class="block text-gray-700 mb-2">Contraseña:</label>
+                <input id="contraseña" formControlName="password" type="password" placeholder="Tu contraseña"
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <div *ngIf="registerForm.get('contraseña')?.invalid && registerForm.get('contraseña')?.touched">
+                    <small class="text-red-500">La contraseña es requerida.</small>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="telefono" class="block text-gray-700 mb-2">Teléfono:</label>
+                <input id="telefono" formControlName="phone" type="tel" placeholder="123-456-7890"
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <div *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched">
+                    <small class="text-red-500">Ingresa un teléfono válido.</small>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="direccion" class="block text-gray-700 mb-2">Dirección:</label>
+                <input id="direccion" formControlName="address" type="text" placeholder="Tu dirección"
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <div *ngIf="registerForm.get('direccion')?.invalid && registerForm.get('direccion')?.touched">
+                    <small class="text-red-500">La dirección es requerida.</small>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label for="rol" class="block text-gray-700 mb-2">Rol:</label>
+                <select id="rol" formControlName="role"
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option value="">Selecciona un rol</option>
+                    <option value="usuario">Usuario</option>
+                    <option value="veterinario">Veterinario</option>
+                    <option value="administrador">Administrador</option>
+                </select>
+                <div *ngIf="registerForm.get('rol')?.invalid && registerForm.get('rol')?.touched">
+                    <small class="text-red-500">Selecciona un rol.</small>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="registerForm.invalid"
+                class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-200">
+                Registrar
+            </button>
+            <div *ngIf="errorMessage" class="mt-4 text-red-500 text-center">{{ errorMessage }}</div>
+        </form>
+    </div>
+</div>
+<app-footer/>

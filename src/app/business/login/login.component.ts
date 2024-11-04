@@ -1,20 +1,35 @@
-import { HttpClient, HttpClientModule, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpResponse,
+} from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../../../enviroment';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    HttpClientModule,
+    HeaderComponent,
+    FooterComponent,
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-
-export  class LoginComponent {
-
+export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
 
@@ -25,7 +40,7 @@ export  class LoginComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
@@ -35,7 +50,8 @@ export  class LoginComponent {
 
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      this.http.get(`${environment.apiUrl}/${email}`, { observe: 'response' })
+      this.http
+        .get(`${environment.apiUrl}/${email}`, { observe: 'response' })
         .subscribe({
           next: (response: HttpResponse<any>) => {
             if (response && response.status === 200) {
@@ -47,12 +63,16 @@ export  class LoginComponent {
           },
           error: (error: HttpResponse<any>) => {
             if (error.status === 404) {
-              this.errorMessage = 'Usuario no encontrado. Por favor verifica tus credenciales.';
-              console.log('Usuario no encontrado. Por favor verifica tus credenciales.');
+              this.errorMessage =
+                'Usuario no encontrado. Por favor verifica tus credenciales.';
+              console.log(
+                'Usuario no encontrado. Por favor verifica tus credenciales.'
+              );
             } else {
-              this.errorMessage = 'Error en el servidor. Inténtalo de nuevo más tarde.';
+              this.errorMessage =
+                'Error en el servidor. Inténtalo de nuevo más tarde.';
             }
-          }
+          },
         });
     }
   }

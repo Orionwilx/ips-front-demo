@@ -1,27 +1,5 @@
-<header class="bg-green-500 text-white py-4">
-  <div class="container mx-auto flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Pawsitive Pet Care</h1>
-    <nav class="flex space-x-4">
-      <a href="/home" class="hover:text-gray-200">Home</a>
-      <a href="/notFount404" class="hover:text-gray-200">Services</a>
-      <a href="/notFount404" class="hover:text-gray-200">About</a>
-      <a href="/notFount404" class="hover:text-gray-200">Contact</a>
-    </nav>
-    <div class="flex space-x-2">
-      <a href="/login">
-        <button type="button" class="bg-white text-green-500 px-4 py-2 rounded shadow hover:bg-gray-100">
-          Login
-        </button>
-      </a>
-      <a href="/register">
+<app-header/>
 
-        <button class="bg-green-700 text-white px-4 py-2 rounded shadow hover:bg-green-800">
-          Register
-        </button>
-      </a>
-    </div>
-  </div>
-</header>
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
     <h2 class="text-2xl font-semibold mb-6 text-center text-green-600">Iniciar Sesión</h2>
@@ -63,9 +41,10 @@
       </button>
       <div *ngIf="errorMessage" class="mt-4 text-red-500 text-center">{{ errorMessage }}</div>
       <div class="mt-4 flex justify-between">
-        <a href="/home" class="text-sm text-green-500 hover:underline">Regístrate</a>
-        <a href="/notFount404" class="text-sm text-green-500 hover:underline">Olvidé mi contraseña</a>
+        <a href="/register" class="text-sm text-green-500 hover:underline">Regístrate</a>
+        <a href="/notFound404" class="text-sm text-green-500 hover:underline">Olvidé mi contraseña</a>
       </div>
     </form>
   </div>
 </div>
+<app-footer/>

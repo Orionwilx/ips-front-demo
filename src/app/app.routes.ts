@@ -1,22 +1,22 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { NotfountComponent } from './notfount/notfount.component';
+import { LoginComponent } from './business/login/login.component';
+import { HomeComponent } from './business/home/home.component';
+import { UserProfileComponent } from './business/user-profile/user-profile.component';
+import { NotfountComponent } from './shared/components/notfount/notfount.component';
+import { RegisterComponent } from './business/register/register.component';
 
 export const routes: Routes = [
+  { path: 'home', component: HomeComponent },
 
-    { path: 'home', component: HomeComponent},
-    
-    { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
 
-    { path: 'user-profile', component: UserProfileComponent},
-    
-    { path: 'notFount404', component: NotfountComponent},
-    
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent },
 
-    { path: '**', redirectTo: 'login' },
+  { path: 'user-profile', component: UserProfileComponent },
 
-    
+  { path: 'notFount404', component: NotfountComponent },
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  { path: '**', redirectTo: 'notFount404' },
 ];
