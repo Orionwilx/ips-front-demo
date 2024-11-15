@@ -11,11 +11,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { environment } from '../../../../enviroment';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-
+import { AuthService } from '../../shared/service/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -35,45 +34,44 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    console.log('Formulario enviado con los valores:', this.loginForm.value);
-    console.log('¿Formulario es válido?', this.loginForm.valid);
-
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.http
-        .get(`${environment.apiUrl}/${email}`, { observe: 'response' })
-        .subscribe({
-          next: (response: HttpResponse<any>) => {
-            if (response && response.status === 200) {
-              console.log('Login successful, redireccionando...');
-              //localStorage.setItem('token', response.token);
-              this.router.navigate(['/user-profile']);
-              console.log('Login successful');
-            }
-          },
-          error: (error: HttpResponse<any>) => {
-            if (error.status === 404) {
-              this.errorMessage =
-                'Usuario no encontrado. Por favor verifica tus credenciales.';
-              console.log(
-                'Usuario no encontrado. Por favor verifica tus credenciales.'
+      console.log('Formulario válido:', this.loginForm.value);
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          console.log('Respuesta de login:', response);
+          if (response && response.body) {
+            localStorage.setItem('token', response.body);
+            console.log('Token almacenado:', localStorage.getItem('token'));
+            try {
+              console.log('Intentando navegar a /user-profile');
+              this.router.navigate(['/user-profile']).then(
+                (success) => {
+                  console.log('Navegación exitosa:', success);
+                },
+                (error) => {
+                  console.error('Error en navegación:', error);
+                }
               );
-            } else {
-              this.errorMessage =
-                'Error en el servidor. Inténtalo de nuevo más tarde.';
+            } catch (e) {
+              console.error('Error al intentar navegar:', e);
             }
-          },
-        });
+          }
+        },
+        error: (error) => {
+          console.error('Error de login:', error);
+          this.errorMessage = 'Error en el inicio de sesión';
+        },
+      });
     }
   }
 }

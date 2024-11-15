@@ -43,10 +43,7 @@ export class RegisterComponent {
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      phone: [
-        '',
-        [Validators.required, Validators.pattern(/^\d{3}\d{3}\d{4}$/)],
-      ],
+      phone: ['', [Validators.required]],
       address: ['', Validators.required],
       role: ['', Validators.required],
       status: ['activo'],
@@ -60,7 +57,7 @@ export class RegisterComponent {
       console.log('Formulario enviado:', formValues);
 
       this.http
-        .post(`${environment.apiUrl}/register`, formValues, {
+        .post(`${environment.apiUrl}/users/register`, formValues, {
           observe: 'response',
           responseType: 'text', // Especifica que la respuesta es texto
         })
