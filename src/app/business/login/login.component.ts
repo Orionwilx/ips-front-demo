@@ -54,7 +54,7 @@ export class LoginComponent {
             console.log('Token almacenado:', localStorage.getItem('token'));
             try {
               console.log('Intentando navegar a /user-profile');
-              this.router.navigate(['/user-profile']).then(
+              this.router.navigate(['/profile']).then(
                 (success) => {
                   console.log('Navegación exitosa:', success);
                 },
