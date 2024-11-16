@@ -4,6 +4,7 @@ import { HomeComponent } from './business/home/home.component';
 import { UserProfileComponent } from './business/user-profile/user-profile.component';
 import { NotfountComponent } from './shared/components/notfount/notfount.component';
 import { RegisterComponent } from './business/register/register.component';
+import { ServicesComponent } from './business/services/services.component';
 import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [authGuard],
   },
+  { path: 'services', component: ServicesComponent, canActivate: [authGuard] },
   { path: 'notFount404', component: NotfountComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'notFount404' },

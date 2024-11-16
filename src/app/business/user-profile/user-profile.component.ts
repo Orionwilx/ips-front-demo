@@ -11,6 +11,10 @@ import { UserService } from '../../shared/service/user.service';
   styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent implements OnInit {
+  viewServices() {
+    throw new Error('Method not implemented.');
+  }
+
   user: UserModel | null = null;
   errorMessage: string = '';
 
