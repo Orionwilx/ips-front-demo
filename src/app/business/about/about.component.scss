@@ -1,0 +1,14 @@
+.hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://example.com/path-to-your-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.team-member-image {
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}

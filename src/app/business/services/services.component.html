@@ -4,13 +4,26 @@
         <nav class="flex space-x-4">
             <a href="/home" class="hover:text-gray-200">Home</a>
             <a href="/services" class="hover:text-gray-200">Services</a>
-            <a href="/notFount404" class="hover:text-gray-200">About</a>
+            <a href="/about" class="hover:text-gray-200">About</a>
             <a href="/notFount404" class="hover:text-gray-200">Contact</a>
         </nav>
         
     </div>
 </div>
-
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-semibold">Nuestros Servicios</h2>
+        <!-- Botón para crear nuevo servicio -->
+        <button *ngIf="isAdmin" (click)="createNewService()"
+            class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                    clip-rule="evenodd" />
+            </svg>
+            Crear Nuevo Servicio
+        </button>
+    </div>
 
 <div class="container mx-auto px-4 py-8">
     <h2 class="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>

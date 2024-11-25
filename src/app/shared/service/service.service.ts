@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ServiceService {
-  private apiUrl = `${environment.apiUrl}/services/all`;
+  private apiUrl = `${environment.apiUrl}/services`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -20,6 +20,17 @@ export class ServiceService {
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<ServiceModel[]>(this.apiUrl, { headers });
+    return this.http.get<ServiceModel[]>(`${this.apiUrl}/all`, { headers });
+  }
+  createService(service: ServiceModel): Observable<ServiceModel> {
+    const token = this.authService.getToken();
+    if (!token) {
+      throw new Error('No hay token disponible');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<ServiceModel>(`${this.apiUrl}/create`, service, {
+      headers,
+    });
   }
 }

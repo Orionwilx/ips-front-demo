@@ -1,0 +1,88 @@
+<app-header />
+
+<main class="bg-gray-100 min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-green-500 text-white py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                About Pawsitive Pet Care
+            </h1>
+            <p class="text-xl text-center max-w-3xl mx-auto">
+                Dedicated to providing the highest quality care for your beloved pets since 2020
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Our Mission</h2>
+                <p class="text-gray-600 text-lg text-center mb-8">
+                    To provide exceptional care and services that enhance the lives of pets and their owners, creating
+                    lasting bonds and promoting animal welfare in our community.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6 bg-white rounded-lg shadow-md">
+                        <div class="text-green-500 text-4xl mb-4">❤️</div>
+                        <h3 class="font-semibold mb-2">Care</h3>
+                        <p class="text-gray-600">Providing loving attention to every pet</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-lg shadow-md">
+                        <div class="text-green-500 text-4xl mb-4">🏥</div>
+                        <h3 class="font-semibold mb-2">Quality</h3>
+                        <p class="text-gray-600">Excellence in veterinary services</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-lg shadow-md">
+                        <div class="text-green-500 text-4xl mb-4">🤝</div>
+                        <h3 class="font-semibold mb-2">Trust</h3>
+                        <p class="text-gray-600">Building lasting relationships</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Team</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div *ngFor="let member of team" class="text-center">
+                    <img [src]="member.image" [alt]="member.name"
+                        class="w-48 h-48 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="font-semibold text-xl mb-2">{{member.name}}</h3>
+                    <p class="text-green-600 mb-2">{{member.role}}</p>
+                    <p class="text-gray-600">{{member.description}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Values</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-xl mb-3">Compassion</h3>
+                    <p class="text-gray-600">We treat every pet with the love and care they deserve</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-xl mb-3">Excellence</h3>
+                    <p class="text-gray-600">Committed to providing the highest quality of service</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-xl mb-3">Innovation</h3>
+                    <p class="text-gray-600">Using the latest techniques and technologies in pet care</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-xl mb-3">Community</h3>
+                    <p class="text-gray-600">Building strong relationships with pet owners and the community</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer />

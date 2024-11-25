@@ -22,7 +22,7 @@ export class UserService {
     // Agrega logs para depuración
     console.log('Token usado:', token);
 
-    const headers = new HttpHeaders().set('Authorization', `bearer ${token}`); // Añade el header Accept
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Añade el header Accept
 
     const email = this.getUserEmail();
 
